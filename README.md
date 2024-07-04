@@ -18,29 +18,60 @@ Fear no more! 🎊 EasyConfetti is here to make your digital celebrations 🥳 a
    ```
    Import and add to your React component:
 
-javascript
+```javascript
+import { Confetti } from "easy-confetti";
 
-    import { Confetti } from 'easy-confetti';
+function App() {
+  return (
+    <div>
+      <h1>Let's Celebrate! 🎉</h1>
+      <Confetti />
+    </div>
+  );
+}
 
-    function App() {
-      return (
-        <div>
-          <h1>Let's Celebrate! 🎉</h1>
-          <Confetti />
-        </div>
-      );
-    }
+export default App;
+```
 
-    export default App;
+### NPM / NPX Command 📦
 
-Demo 📺
+The `npx easyfetti` command makes it even easier to add confetti to your project. Simply run:
 
-Want to see it in action? Check out this link for a live demo! 🌐
-Contributing 🤝
+```bash
+npx easyfetti your-custom-identifier
+```
 
-Love EasyConfetti? Great! We’re open to contributions to make this even better! Check out our contributing guidelines.
-Support 💖
+This command will install EasyConfetti into your existing package, allowing you to use it effortlessly in your project. For instance, you can use the `<EasyFetti>` component like so:
 
-Got questions? Check out our FAQ or create an issue here on GitHub. We’re here to help!
+```javascript
+import { EasyFetti } from "easyfetti";
+
+function Party() {
+  return (
+    <div>
+      <h2>Welcome to the Party! 🎉</h2>
+      <EasyFetti />
+    </div>
+  );
+}
+
+export default Party;
+```
+
+### Demo 📺
+
+Want to see it in action? Check out [this link](easyfetti.com) for a live demo! 🌐
+
+### Contributing 🤝
+
+Love EasyConfetti? Great! We’re open to contributions to make this even better! Check out our [contributing guidelines](https://github.com/your-repo/easyfetti/blob/main/CONTRIBUTING.md). Whether it's bug fixes, new features, or improving documentation, we welcome your help!
+
+### Support 💖
+
+Got questions? Check out our [FAQ](https://github.com/your-repo/easyfetti#faq) or create an issue [here on GitHub](https://github.com/your-repo/easyfetti/issues). We’re here to help!
 
 Let the confetti fall, and the party begin! 🎉🎊
+
+---
+
+Check out the [EasyConfetti npm package](https://www.npmjs.com/package/easyfetti) and join our community of contributors today! 🎉
