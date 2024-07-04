@@ -52,7 +52,9 @@ function drawFrame() {
     for (let j = 0; j < width; j++) {
       line +=
         Math.random() > 0.98
-          ? colors[Math.floor(Math.random() * colors.length)]("*")
+          ? (colors[Math.floor(Math.random() * colors.length)] ?? chalk.white)(
+              "*",
+            )
           : " ";
     }
     process.stdout.write(line);
@@ -84,6 +86,9 @@ function animateConfetti(duration = 5000) {
 }
 
 // Message buffering for asynchronous operation outputs
+/**
+ * @type {string[]}
+ */
 let messageBuffer = [];
 
 /**
@@ -93,22 +98,25 @@ let messageBuffer = [];
 async function installReactConfetti() {
   console.log(chalk.yellow("Starting the installation of react-confetti..."));
 
-  return new Promise((resolve, reject) => {
-    const child = exec("npm install react-confetti");
+  return /** @type {Promise<void>} */ (
+    new Promise((resolve, reject) => {
+      const child = exec("npm install react-confetti");
 
-    child.stdout.on("data", (data) => messageBuffer.push(data.toString()));
-    child.stderr.on("data", (data) => messageBuffer.push(data.toString()));
-
-    child.on("close", (code) => {
-      if (code === 0) {
-        messageBuffer.push("react-confetti installed successfully!");
-        resolve();
-      } else {
-        messageBuffer.push("Installation failed with code " + code);
-        reject(new Error("Installation failed"));
+      if (child.stderr) {
+        child.stderr.on("data", (data) => messageBuffer.push(data.toString()));
       }
-    });
-  });
+
+      child.on("close", (code) => {
+        if (code === 0) {
+          messageBuffer.push("react-confetti installed successfully!");
+          resolve();
+        } else {
+          messageBuffer.push("Installation failed with code " + code);
+          reject(new Error("Installation failed"));
+        }
+      });
+    })
+  );
 }
 
 /**
